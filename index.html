@@ -5,18 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>UMF 21 - Coordinación de Enseñanza</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, sans-serif;
             background-color: #f9fafb;
             color: #111827;
             line-height: 1.5;
         }
-        /* Navegación */
         .navbar {
             background: white;
             border-bottom: 1px solid #eef2f6;
@@ -74,7 +69,6 @@
             background-color: #0a2b3e;
             color: white;
         }
-        /* Contenido principal */
         .main-content {
             max-width: 1200px;
             margin: 2rem auto;
@@ -91,7 +85,6 @@
             from { opacity: 0; transform: translateY(10px);}
             to { opacity: 1; transform: translateY(0);}
         }
-        /* Tarjetas y elementos comunes */
         .card {
             background: white;
             border-radius: 1.5rem;
@@ -99,6 +92,25 @@
             margin-bottom: 1.5rem;
             border: 1px solid #edf2f7;
             box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+        }
+        /* Hero de inicio */
+        .hero {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .hero-logo {
+            max-width: 200px;
+            margin: 0 auto 1rem auto;
+        }
+        .hero-logo img {
+            width: 100%;
+            height: auto;
+        }
+        h1 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #0a2b3e;
+            margin-bottom: 0.5rem;
         }
         h2 {
             font-size: 1.6rem;
@@ -203,7 +215,7 @@
             color: #94a3b8;
             margin-top: 2rem;
         }
-        /* Estilos para la sección de cursos (igual que antes, pero dentro de .section) */
+        /* Estilos sección cursos */
         .filter-section {
             background: white;
             border-radius: 1.5rem;
@@ -220,6 +232,34 @@
             font-size: 1rem;
             font-family: inherit;
         }
+        .legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            background: #f9fafb;
+            padding: 0.75rem;
+            border-radius: 1rem;
+            margin-bottom: 1rem;
+            font-size: 0.8rem;
+            color: #4b5563;
+        }
+        .legend span {
+            font-weight: 600;
+            color: #0a2b3e;
+        }
+        .courses-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .courses-count {
+            background: #eef2ff;
+            padding: 0.25rem 0.75rem;
+            border-radius: 2rem;
+            font-size: 0.8rem;
+        }
         .courses-list {
             display: flex;
             flex-direction: column;
@@ -230,6 +270,11 @@
             border-radius: 1.5rem;
             padding: 1.5rem;
             border: 1px solid #edf2f7;
+            transition: all 0.2s;
+        }
+        .course-card:hover {
+            border-color: #cbd5e1;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
         }
         .course-header {
             display: flex;
@@ -262,7 +307,11 @@
             font-size: 0.9rem;
             color: #334155;
         }
-        .detail-item { display: flex; align-items: center; gap: 0.3rem; }
+        .detail-item {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
         .description {
             margin-top: 0.75rem;
             font-size: 0.9rem;
@@ -277,11 +326,17 @@
             border-radius: 1.5rem;
             color: #6c757d;
         }
-        .loading { text-align: center; padding: 2rem; color: #6c757d; }
+        .loading {
+            text-align: center;
+            padding: 2rem;
+            color: #6c757d;
+        }
         @media (max-width: 768px) {
             .nav-container { flex-direction: column; align-items: stretch; }
             .nav-links { justify-content: center; }
             .mission-vision { flex-direction: column; }
+            .legend { font-size: 0.7rem; }
+            .hero-logo { max-width: 150px; }
         }
     </style>
 </head>
@@ -306,13 +361,17 @@
 </div>
 
 <div class="main-content">
-    <!-- Sección Inicio -->
+    <!-- INICIO con logo grande centrado -->
     <div id="inicio" class="section active">
+        <div class="hero">
+            <div class="hero-logo">
+                <img src="Logo_Inicio.png" alt="UMF 21 - Inicio" onerror="this.src='https://via.placeholder.com/200?text=UMF21'">
+            </div>
+            <h1>Bienvenido al portal de capacitación</h1>
+            <p>Unidad de Medicina Familiar No. 21 · Coordinación de Enseñanza</p>
+        </div>
         <div class="card">
-            <h2>Bienvenido al portal de capacitación</h2>
-            <p>La Unidad de Medicina Familiar No. 21 pone a tu disposición este espacio para consultar y solicitar los cursos de formación continua. Selecciona tu categoría en la sección de <strong>Cursos</strong> y encuentra las opciones disponibles para ti.</p>
-            <p>Aquí encontrarás toda la oferta educativa, fechas, lugares y requisitos. La capacitación es gratuita y otorga constancia con validez institucional.</p>
-            <br>
+            <p>Selecciona tu categoría en la sección <strong>Cursos</strong> y consulta la oferta de capacitación disponible para ti.</p>
             <p><strong>Eslogan:</strong> <em>"Formación continua con calidad y calidez para el equipo de salud"</em></p>
         </div>
         <div class="card">
@@ -325,37 +384,25 @@
         </div>
     </div>
 
-    <!-- Sección Quiénes somos -->
+    <!-- Quiénes somos -->
     <div id="quienes" class="section">
         <div class="card">
             <h2>¿Quiénes somos?</h2>
-            <p>Unidad de Medicina Familiar No. 21 OOAD 38 SUR CDMX. Somos una unidad de atención primaria comprometida con la formación continua de nuestro personal.</p>
+            <p>Unidad de Medicina Familiar No. 21 OOAD 38 SUR CDMX.</p>
             <div class="mission-vision">
-                <div class="mv-card">
-                    <h3>Misión</h3>
-                    <p>Desarrollar programas educativos para la formación de recursos humanos y desarrollo profesional continuo del equipo multidisciplinario de salud, mediante la implementación de un modelo educativo propio, basado en competencias y valores, con énfasis en la innovación, el uso de tecnologías de la información y comunicación, para contribuir a la mejora de la calidad de la atención a la salud.</p>
-                </div>
-                <div class="mv-card">
-                    <h3>Visión</h3>
-                    <p>Ser un centro de referencia nacional e internacional, en la formación, actualización, desarrollo profesional continuo y capacitación de los recursos humanos para la salud, que responda a las necesidades de nuestro país.</p>
-                </div>
+                <div class="mv-card"><h3>Misión</h3><p>Desarrollar programas educativos para la formación de recursos humanos y desarrollo profesional continuo del equipo multidisciplinario de salud, mediante la implementación de un modelo educativo propio, basado en competencias y valores, con énfasis en la innovación, el uso de tecnologías de la información y comunicación, para contribuir a la mejora de la calidad de la atención a la salud.</p></div>
+                <div class="mv-card"><h3>Visión</h3><p>Ser un centro de referencia nacional e internacional, en la formación, actualización, desarrollo profesional continuo y capacitación de los recursos humanos para la salud, que responda a las necesidades de nuestro país.</p></div>
             </div>
             <h3>Valores</h3>
             <div class="values-list">
-                <span class="value-tag">Congruencia</span>
-                <span class="value-tag">Honorabilidad</span>
-                <span class="value-tag">Honradez</span>
-                <span class="value-tag">Responsabilidad</span>
-                <span class="value-tag">Compromiso Social</span>
-                <span class="value-tag">Vocación de servicio</span>
-                <span class="value-tag">Integridad</span>
-                <span class="value-tag">Liderazgo</span>
+                <span class="value-tag">Congruencia</span><span class="value-tag">Honorabilidad</span><span class="value-tag">Honradez</span>
+                <span class="value-tag">Responsabilidad</span><span class="value-tag">Compromiso Social</span><span class="value-tag">Vocación de servicio</span>
+                <span class="value-tag">Integridad</span><span class="value-tag">Liderazgo</span>
             </div>
-            <p style="margin-top: 1rem;">Nuestro actuar se rige por el Código de Ética y el Código de Conducta del IMSS.</p>
         </div>
     </div>
 
-    <!-- Sección Cursos (mismo código funcional) -->
+    <!-- CURSOS (compatible con columnas por mes) -->
     <div id="cursos" class="section">
         <div class="filter-section">
             <label for="categoria">👥 Selecciona tu categoría laboral</label>
@@ -380,166 +427,92 @@
                 <option value="Trabajadora social">Trabajadora social</option>
             </select>
         </div>
+
+        <div class="legend">
+            <span>📅 Fechas por mes</span> • <span>⏱️ Duración total</span> • <span>🕒 Horario</span> • <span>📍 Lugar</span> • <span>📖 Descripción</span> • <span>🏷️ Estado</span>
+        </div>
+
+        <div class="courses-header">
+            <div></div>
+            <div id="coursesCount" class="courses-count"></div>
+        </div>
         <div id="coursesContainer" class="courses-list">
             <div class="loading">Cargando cursos...</div>
         </div>
     </div>
 
-    <!-- Sección FAQ -->
+    <!-- FAQ (con respuesta modificada sobre contrataciones) -->
     <div id="faq" class="section">
-        <div class="card">
-            <h2>Preguntas frecuentes</h2>
-            <div class="faq-item">
-                <div class="faq-question">¿Cómo me inscribo a un curso? <span>+</span></div>
-                <div class="faq-answer">Deberás llenar el formulario de inscripción (próximamente disponible en esta misma página). Se te pedirán datos como matrícula, categoría, correo personal, entre otros. Una vez enviado, la coordinación validará tu elegibilidad.</div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">¿Los cursos tienen costo? <span>+</span></div>
-                <div class="faq-answer">Los cursos son totalmente gratuitos, impartidos por el IMSS como parte de la formación continua del personal.</div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">¿Puedo tomar un curso si mi categoría no aparece? <span>+</span></div>
-                <div class="faq-answer">Cada curso está diseñado para categorías específicas. Si tu categoría no está listada, no podrás inscribirte a ese curso en particular. Sin embargo, hay cursos etiquetados como "TODOS" que son abiertos a cualquier trabajador.</div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">¿Hay constancia de participación? <span>+</span></div>
-                <div class="faq-answer">Sí, al cumplir con las horas y días establecidos en el curso, se otorga una constancia con validez curricular institucional.</div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">¿El tipo de contratación afecta la disponibilidad de cursos? <span>+</span></div>
-                <div class="faq-answer">Actualmente, las contrataciones tipo 02 y 08 no tienen acceso a cursos de capacitación. El personal de base sí tiene derecho a tomar los cursos.</div>
-            </div>
+        <div class="card"><h2>Preguntas frecuentes</h2>
+            <div class="faq-item"><div class="faq-question">¿Cómo me inscribo a un curso? <span>+</span></div><div class="faq-answer">Próximamente habilitaremos un formulario en línea. Deberás proporcionar matrícula, categoría y correo electrónico institucional.</div></div>
+            <div class="faq-item"><div class="faq-question">¿Los cursos tienen costo? <span>+</span></div><div class="faq-answer">Totalmente gratuitos, impartidos por el IMSS como parte de la formación continua.</div></div>
+            <div class="faq-item"><div class="faq-question">¿Puedo tomar un curso si mi categoría no aparece? <span>+</span></div><div class="faq-answer">No, a menos que el curso esté marcado como "TODOS" en la columna de categorías permitidas.</div></div>
+            <div class="faq-item"><div class="faq-question">¿Hay constancia de participación? <span>+</span></div><div class="faq-answer">Sí, al cumplir con las horas y días establecidos se otorga constancia con validez curricular institucional.</div></div>
+            <div class="faq-item"><div class="faq-question">Contrataciones tipo 02 y 08 <span>+</span></div><div class="faq-answer">El personal con contratación tipo 08 no puede tomar cursos por el momento. El tipo 02 tiene acceso a algunos cursos, no a todos. Los de base sí tienen derecho a la mayoría. Revisa la categoría permitida en cada curso.</div></div>
         </div>
     </div>
 
-    <!-- Sección Noticias -->
+    <!-- Noticias -->
     <div id="noticias" class="section">
-        <div class="card">
-            <h2>Noticias y actualizaciones</h2>
-            <div class="news-item">
-                <div class="news-title">Bienvenida al nuevo sitio de cursos</div>
-                <div class="news-date">15 de mayo de 2026</div>
-                <p>Hemos lanzado este portal para facilitar la consulta de cursos. Próximamente habilitaremos el registro en línea.</p>
-            </div>
-            <div class="news-item">
-                <div class="news-title">Próximas capacitaciones en RCP y Primeros Auxilios</div>
-                <div class="news-date">Junio 2026</div>
-                <p>Se están programando cursos para el segundo semestre. Mantente atento a las fechas en la sección de Cursos.</p>
-            </div>
-            <div class="news-item">
-                <div class="news-title">Nuevo sistema de constancias digitales</div>
-                <div class="news-date">En desarrollo</div>
-                <p>Pronto podrás descargar tus constancias directamente desde este sitio.</p>
-            </div>
+        <div class="card"><h2>Noticias y actualizaciones</h2>
+            <div class="news-item"><div class="news-title">Bienvenida al nuevo sitio de cursos</div><div class="news-date">Mayo 2026</div><p>Portal activo para consulta de cursos. Próximamente registro en línea.</p></div>
+            <div class="news-item"><div class="news-title">Próximas capacitaciones</div><div class="news-date">Junio 2026</div><p>Revisa el catálogo actualizado con fechas por mes y duración total.</p></div>
         </div>
     </div>
 
-    <!-- Sección Contacto -->
+    <!-- Contacto -->
     <div id="contacto" class="section">
-        <div class="card">
-            <h2>Contacto y ubicación</h2>
+        <div class="card"><h2>Contacto y ubicación</h2>
             <div class="contact-info">
-                <div class="contact-item">
-                    <strong>Dirección</strong><br>
-                    Av Francisco del Paso y Troncoso 281,<br>
-                    Colonia Jardín Balbuena, C.P. 15900,<br>
-                    Alcaldía Venustiano Carranza, CDMX.
-                </div>
-                <div class="contact-item">
-                    <strong>Horario de atención</strong><br>
-                    Lunes a viernes: 08:00 a 16:00 hrs.
-                </div>
+                <div class="contact-item"><strong>Dirección</strong><br>Av Francisco del Paso y Troncoso 281, Col. Jardín Balbuena, CP 15900, Venustiano Carranza, CDMX.</div>
+                <div class="contact-item"><strong>Horario de atención</strong><br>08:00 a 16:00 hrs.</div>
             </div>
-            <div class="map-container">
-                <iframe src="https://maps.google.com/maps?q=19.418084738820635,-99.11310157498202&z=16&output=embed" allowfullscreen></iframe>
-            </div>
-            <p style="margin-top: 1rem; font-size: 0.85rem;">Por razones de seguridad, no mostramos correo electrónico ni teléfono en este sitio público. Las comunicaciones oficiales se realizan a través de los canales internos del IMSS.</p>
+            <div class="map-container"><iframe src="https://maps.google.com/maps?q=19.418084738820635,-99.11310157498202&z=16&output=embed" allowfullscreen></iframe></div>
+            <p style="font-size:0.85rem; margin-top:1rem;">Por razones de seguridad no publicamos correo electrónico ni teléfono en este sitio público.</p>
         </div>
     </div>
 
-    <!-- Sección Políticas de privacidad -->
+    <!-- Políticas de privacidad -->
     <div id="politicas" class="section">
-        <div class="card">
-            <h2>Aviso de privacidad</h2>
-            <p>En cumplimiento con la Ley Federal de Protección de Datos Personales en Posesión de los Particulares (LFPDPPP) y su Reglamento, la Unidad de Medicina Familiar No. 21 informa a los usuarios de este sitio que:</p>
-            <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
-                <li>Los datos personales que se lleguen a recabar a través de futuros formularios de inscripción serán utilizados exclusivamente para fines de capacitación, registro y emisión de constancias.</li>
-                <li>No se compartirán con terceros ajenos al IMSS sin el consentimiento expreso del titular.</li>
-                <li>El responsable del tratamiento de datos es la Coordinación de Enseñanza de la UMF 21.</li>
-                <li>Usted puede ejercer sus derechos ARCO (Acceso, Rectificación, Cancelación y Oposición) enviando una solicitud al área de enseñanza de la unidad.</li>
-                <li>Este sitio no utiliza cookies de rastreo ni recopila información personal automáticamente.</li>
-            </ul>
-            <p style="margin-top: 1rem;">Fecha de última actualización: mayo de 2026.</p>
+        <div class="card"><h2>Aviso de privacidad</h2>
+            <p>En cumplimiento con la Ley Federal de Protección de Datos Personales en Posesión de los Particulares (LFPDPPP), la Unidad de Medicina Familiar No. 21 informa que los datos personales recabados serán utilizados exclusivamente para fines de capacitación, registro y emisión de constancias. No se compartirán con terceros ajenos al IMSS sin consentimiento expreso. El responsable del tratamiento es la Coordinación de Enseñanza. Usted puede ejercer sus derechos ARCO ante la unidad.</p>
+            <p>Fecha de última actualización: mayo de 2026.</p>
         </div>
     </div>
 </div>
 
 <footer>
-    Unidad de Medicina Familiar No. 21 · Coordinación de Enseñanza · Formación continua para el equipo de salud
+    © 2026 UMF 21 - Coordinación de Enseñanza. Todos los derechos reservados. "M. Sc. in AI. hby."
 </footer>
 
 <script>
-    // === Navegación entre secciones ===
-    const sections = document.querySelectorAll('.section');
-    const navBtns = document.querySelectorAll('.nav-btn');
-    function showSection(sectionId) {
-        sections.forEach(sec => sec.classList.remove('active'));
-        const activeSec = document.getElementById(sectionId);
-        if (activeSec) activeSec.classList.add('active');
-        navBtns.forEach(btn => {
-            if (btn.dataset.section === sectionId) btn.classList.add('active');
-            else btn.classList.remove('active');
-        });
-    }
-    navBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            const sectionId = btn.dataset.section;
-            showSection(sectionId);
-            // Si es la sección de cursos, forzar recarga de lista? No necesario, ya está cargada.
-        });
-    });
-    // Enlaces rápidos de inicio
-    document.querySelectorAll('[data-quick]').forEach(link => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            const section = link.dataset.quick;
-            showSection(section);
-        });
-    });
-    // Acordeón FAQ
-    const faqQuestions = document.querySelectorAll('.faq-question');
-    faqQuestions.forEach(q => {
-        q.addEventListener('click', () => {
-            const answer = q.nextElementSibling;
-            answer.classList.toggle('show');
-            const span = q.querySelector('span');
-            if (span) span.textContent = answer.classList.contains('show') ? '−' : '+';
-        });
-    });
-
-    // === Código de cursos (desde Google Sheets) ===
+    // === CONFIGURACIÓN: enlace CSV (actualízalo si cambió) ===
     const SPREADSHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTsVlWtpqfXBfKtk1J28jiVLiAOiSoGQnIeudhy6R_W5EAGdQjSd_eE-tuDacKgU0tyMFFBs4XY2beK/pub?gid=0&single=true&output=csv";
 
-    function parseFechaDDMMYYYY(fechaStr) {
-        if (!fechaStr) return null;
-        const partes = fechaStr.split('/');
-        if (partes.length !== 3) return null;
-        const dia = parseInt(partes[0], 10);
-        const mes = parseInt(partes[1], 10) - 1;
-        const año = parseInt(partes[2], 10);
-        return new Date(año, mes, dia);
-    }
-    function tieneFechaFutura(textoFechas) {
-        if (!textoFechas) return false;
-        const hoy = new Date();
-        hoy.setHours(0, 0, 0, 0);
-        const fechasLista = textoFechas.split(',').map(s => s.trim());
-        for (let f of fechasLista) {
-            const fechaObj = parseFechaDDMMYYYY(f);
-            if (fechaObj && fechaObj >= hoy) return true;
+    // Función para parsear días sueltos o rangos
+    function diasTextoAFechas(texto, mesIndex, anio) {
+        if (!texto || texto.trim() === "") return [];
+        const partes = texto.split(',');
+        let fechas = [];
+        for (let p of partes) {
+            p = p.trim();
+            if (p.includes('-')) {
+                let [inicio, fin] = p.split('-').map(Number);
+                for (let d = inicio; d <= fin; d++) {
+                    let fecha = new Date(anio, mesIndex, d);
+                    if (!isNaN(fecha)) fechas.push(fecha);
+                }
+            } else {
+                let dia = parseInt(p, 10);
+                if (!isNaN(dia)) {
+                    let fecha = new Date(anio, mesIndex, dia);
+                    if (!isNaN(fecha)) fechas.push(fecha);
+                }
+            }
         }
-        return false;
+        return fechas;
     }
+
     async function cargarCursos() {
         try {
             const response = await fetch(SPREADSHEET_CSV_URL);
@@ -547,45 +520,82 @@
             const csvText = await response.text();
             const lineas = csvText.split(/\r?\n/).filter(l => l.trim() !== '');
             if (lineas.length < 2) throw new Error();
+
             const headers = lineas[0].split(',').map(h => h.trim().toLowerCase());
-            const idxNombre = headers.findIndex(h => h.includes('nombre') || h === 'curso');
-            const idxDesc = headers.findIndex(h => h.includes('descrip'));
-            const idxFechas = headers.findIndex(h => h.includes('fecha') || h === 'fechas');
-            const idxHora = headers.findIndex(h => h.includes('hora'));
-            const idxLugar = headers.findIndex(h => h.includes('lugar') || h === 'ubicacion');
-            const idxEnLinea = headers.findIndex(h => h.includes('en_linea') || h === 'en linea');
-            const idxCategorias = headers.findIndex(h => h.includes('categorias') || h.includes('permite'));
-            const idxEstado = headers.findIndex(h => h.includes('estado'));
-            const idxObserv = headers.findIndex(h => h.includes('observ') || h === 'cambios');
+            
+            const idxNombre = headers.findIndex(h => h === 'nombre');
+            const idxDesc = headers.findIndex(h => h === 'descripcion');
+            const meses = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+            let idxMeses = meses.map(m => headers.findIndex(h => h === m));
+            const idxTotalHoras = headers.findIndex(h => h === 'total de horas');
+            const idxTotalDias = headers.findIndex(h => h === 'total de dias');
+            const idxHora = headers.findIndex(h => h === 'hora');
+            const idxLugar = headers.findIndex(h => h === 'lugar');
+            const idxEnLinea = headers.findIndex(h => h === 'en_linea');
+            const idxCategorias = headers.findIndex(h => h === 'categorias_permitidas');
+            const idxEstado = headers.findIndex(h => h === 'estado');
+            const idxObserv = headers.findIndex(h => h === 'observaciones');
+
             const cursos = [];
             for (let i = 1; i < lineas.length; i++) {
                 const valores = lineas[i].split(',').map(v => v.trim().replace(/^"|"$/g, ''));
                 if (valores.length < 2) continue;
-                const nombre = idxNombre !== -1 ? valores[idxNombre] : 'Sin nombre';
+                const nombre = idxNombre !== -1 ? valores[idxNombre] : '';
                 if (!nombre) continue;
+
                 const descripcion = idxDesc !== -1 ? valores[idxDesc] : '';
-                let fechas = idxFechas !== -1 ? valores[idxFechas] : '';
+                let fechasTexto = "";
+                let todasFechas = [];
+                const anioActual = new Date().getFullYear();
+                for (let m = 0; m < meses.length; m++) {
+                    let idxMes = idxMeses[m];
+                    if (idxMes !== -1 && valores[idxMes]) {
+                        let contenido = valores[idxMes];
+                        fechasTexto += `${meses[m].charAt(0).toUpperCase() + meses[m].slice(1)}: ${contenido} `;
+                        let fechasDelMes = diasTextoAFechas(contenido, m, anioActual);
+                        todasFechas.push(...fechasDelMes);
+                    }
+                }
+
                 const hora = idxHora !== -1 ? valores[idxHora] : '';
                 let lugar = idxLugar !== -1 ? valores[idxLugar] : '';
                 const esEnLinea = idxEnLinea !== -1 ? (valores[idxEnLinea].toLowerCase() === 'si' || valores[idxEnLinea] === '1') : false;
-                let categoriasText = idxCategorias !== -1 ? valores[idxCategorias] : '';
+                const categoriasText = idxCategorias !== -1 ? valores[idxCategorias] : '';
                 let estado = idxEstado !== -1 ? valores[idxEstado].toLowerCase() : 'activo';
                 const observaciones = idxObserv !== -1 ? valores[idxObserv] : '';
-                if (!tieneFechaFutura(fechas) && estado !== 'cancelado') continue;
+                const totalHoras = idxTotalHoras !== -1 ? valores[idxTotalHoras] : '';
+                const totalDias = idxTotalDias !== -1 ? valores[idxTotalDias] : '';
+
                 if (esEnLinea) lugar = 'En línea (Zoom/Meet)';
+
+                const hoy = new Date();
+                hoy.setHours(0,0,0,0);
+                let tieneFutura = false;
+                for (let fecha of todasFechas) {
+                    if (fecha >= hoy) { tieneFutura = true; break; }
+                }
+                if (!tieneFutura && estado !== 'cancelado') continue;
+
                 let categoriasPermitidas = [];
                 if (categoriasText.trim().toUpperCase() === "TODOS") {
                     categoriasPermitidas = ["*TODOS*"];
                 } else {
                     categoriasPermitidas = categoriasText.split(',').map(c => c.trim());
                 }
-                cursos.push({ nombre, descripcion, fechas, hora, lugar, esEnLinea, categoriasPermitidas, estado, observaciones });
+
+                cursos.push({
+                    nombre, descripcion, fechas: fechasTexto || "Fechas por definir", hora, lugar,
+                    esEnLinea, categoriasPermitidas, estado, observaciones,
+                    totalHoras, totalDias
+                });
             }
             return cursos;
         } catch (error) {
+            console.error(error);
             return [];
         }
     }
+
     function filtrarPorCategoria(cursos, categoria) {
         if (!categoria) return [];
         return cursos.filter(curso => {
@@ -593,6 +603,7 @@
             return curso.categoriasPermitidas.includes(categoria);
         });
     }
+
     function escapeHtml(str) {
         if (!str) return '';
         return str.replace(/[&<>]/g, function(m) {
@@ -602,13 +613,17 @@
             return m;
         });
     }
+
     function renderizarCursos(cursos, categoriaSeleccionada) {
         const container = document.getElementById('coursesContainer');
+        const countSpan = document.getElementById('coursesCount');
         if (!categoriaSeleccionada) {
             container.innerHTML = '<div class="empty-message">🔍 Selecciona tu categoría para ver los cursos disponibles.</div>';
+            countSpan.textContent = '';
             return;
         }
         const filtrados = filtrarPorCategoria(cursos, categoriaSeleccionada);
+        countSpan.textContent = `${filtrados.length} curso${filtrados.length !== 1 ? 's' : ''} encontrado${filtrados.length !== 1 ? 's' : ''}`;
         if (filtrados.length === 0) {
             container.innerHTML = `<div class="empty-message">📭 No hay cursos disponibles para "${categoriaSeleccionada}" en este momento.</div>`;
             return;
@@ -619,6 +634,7 @@
             else if (curso.estado === 'modificado') estadoBadge = '<span class="badge modified">MODIFICADO</span>';
             const lugarIcono = curso.esEnLinea ? '💻' : '📍';
             const obsHtml = curso.observaciones ? `<div class="detail-item"><span class="detail-icon">📢</span> ${escapeHtml(curso.observaciones)}</div>` : '';
+            const duracionHtml = (curso.totalDias || curso.totalHoras) ? `<div class="detail-item"><span class="detail-icon">⏱️</span> ${curso.totalDias ? curso.totalDias + ' día(s)' : ''} ${curso.totalHoras ? curso.totalHoras + ' hora(s)' : ''}</div>` : '';
             return `
                 <div class="course-card">
                     <div class="course-header">
@@ -626,9 +642,10 @@
                         ${estadoBadge}
                     </div>
                     <div class="course-details">
-                        <div class="detail-item"><span class="detail-icon">📅</span> ${escapeHtml(curso.fechas || 'Fechas por definir')}</div>
+                        <div class="detail-item"><span class="detail-icon">📅</span> ${escapeHtml(curso.fechas)}</div>
                         <div class="detail-item"><span class="detail-icon">⏰</span> ${escapeHtml(curso.hora || 'Horario pendiente')}</div>
                         <div class="detail-item"><span class="detail-icon">${lugarIcono}</span> ${escapeHtml(curso.lugar || 'Lugar no especificado')}</div>
+                        ${duracionHtml}
                         ${obsHtml}
                     </div>
                     ${curso.descripcion ? `<div class="description">📖 ${escapeHtml(curso.descripcion)}</div>` : ''}
@@ -638,27 +655,47 @@
         container.innerHTML = html;
     }
 
+    // Navegación
+    const sections = document.querySelectorAll('.section');
+    const navBtns = document.querySelectorAll('.nav-btn');
+    function showSection(sectionId) {
+        sections.forEach(sec => sec.classList.remove('active'));
+        document.getElementById(sectionId).classList.add('active');
+        navBtns.forEach(btn => {
+            if (btn.dataset.section === sectionId) btn.classList.add('active');
+            else btn.classList.remove('active');
+        });
+    }
+    navBtns.forEach(btn => btn.addEventListener('click', () => showSection(btn.dataset.section)));
+    document.querySelectorAll('[data-quick]').forEach(link => link.addEventListener('click', (e) => { e.preventDefault(); showSection(link.dataset.quick); }));
+
+    // Acordeón FAQ
+    document.querySelectorAll('.faq-question').forEach(q => {
+        q.addEventListener('click', () => {
+            const ans = q.nextElementSibling;
+            ans.classList.toggle('show');
+            q.querySelector('span').textContent = ans.classList.contains('show') ? '−' : '+';
+        });
+    });
+
+    // Cargar cursos
     let cursosGlobal = [];
     const selectCategoria = document.getElementById('categoria');
     async function inicializarCursos() {
         const container = document.getElementById('coursesContainer');
         if (container) {
-            container.innerHTML = '<div class="loading">📡 Cargando catálogo de cursos...</div>';
+            container.innerHTML = '<div class="loading">📡 Cargando catálogo...</div>';
             cursosGlobal = await cargarCursos();
             const categoriaActual = selectCategoria.value;
             if (cursosGlobal.length === 0) {
-                container.innerHTML = '<div class="empty-message">⚠️ No se pudieron cargar los cursos. Verifica la hoja de cálculo o contacta al administrador.</div>';
+                container.innerHTML = '<div class="empty-message">⚠️ No se pudieron cargar los cursos. Verifica la hoja de cálculo.</div>';
             } else {
                 renderizarCursos(cursosGlobal, categoriaActual);
             }
         }
     }
-    if (selectCategoria) {
-        selectCategoria.addEventListener('change', (e) => {
-            renderizarCursos(cursosGlobal, e.target.value);
-        });
-        inicializarCursos();
-    }
+    selectCategoria.addEventListener('change', (e) => renderizarCursos(cursosGlobal, e.target.value));
+    inicializarCursos();
 </script>
 </body>
 </html>
