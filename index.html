@@ -93,18 +93,19 @@
             border: 1px solid #edf2f7;
             box-shadow: 0 1px 2px rgba(0,0,0,0.02);
         }
-        /* Hero de inicio */
+        /* Hero con logo más grande (ocupa media hoja) */
         .hero {
             text-align: center;
             margin-bottom: 2rem;
         }
         .hero-logo {
-            max-width: 200px;
+            max-width: 50%;        /* Ocupa la mitad del contenedor */
             margin: 0 auto 1rem auto;
         }
         .hero-logo img {
             width: 100%;
             height: auto;
+            display: block;
         }
         h1 {
             font-size: 1.8rem;
@@ -215,7 +216,7 @@
             color: #94a3b8;
             margin-top: 2rem;
         }
-        /* Estilos sección cursos */
+        /* Sección cursos */
         .filter-section {
             background: white;
             border-radius: 1.5rem;
@@ -336,7 +337,7 @@
             .nav-links { justify-content: center; }
             .mission-vision { flex-direction: column; }
             .legend { font-size: 0.7rem; }
-            .hero-logo { max-width: 150px; }
+            .hero-logo { max-width: 80%; } /* En móvil un poco más grande */
         }
     </style>
 </head>
@@ -361,11 +362,11 @@
 </div>
 
 <div class="main-content">
-    <!-- INICIO con logo grande centrado -->
+    <!-- INICIO con logo grande (media hoja) -->
     <div id="inicio" class="section active">
         <div class="hero">
             <div class="hero-logo">
-                <img src="Logo_Inicio.png" alt="UMF 21 - Inicio" onerror="this.src='https://via.placeholder.com/200?text=UMF21'">
+                <img src="Logo_Inicio.png" alt="UMF 21 - Inicio" onerror="this.src='https://via.placeholder.com/400?text=UMF21'">
             </div>
             <h1>Bienvenido al portal de capacitación</h1>
             <p>Unidad de Medicina Familiar No. 21 · Coordinación de Enseñanza</p>
@@ -384,7 +385,7 @@
         </div>
     </div>
 
-    <!-- Quiénes somos -->
+    <!-- Quiénes somos (igual) -->
     <div id="quienes" class="section">
         <div class="card">
             <h2>¿Quiénes somos?</h2>
@@ -402,7 +403,7 @@
         </div>
     </div>
 
-    <!-- CURSOS (compatible con columnas por mes) -->
+    <!-- CURSOS (sin filtro de fecha futura, muestra TODO) -->
     <div id="cursos" class="section">
         <div class="filter-section">
             <label for="categoria">👥 Selecciona tu categoría laboral</label>
@@ -441,26 +442,24 @@
         </div>
     </div>
 
-    <!-- FAQ (con respuesta modificada sobre contrataciones) -->
+    <!-- FAQ, Noticias, Contacto, Políticas (sin cambios) -->
     <div id="faq" class="section">
         <div class="card"><h2>Preguntas frecuentes</h2>
-            <div class="faq-item"><div class="faq-question">¿Cómo me inscribo a un curso? <span>+</span></div><div class="faq-answer">Próximamente habilitaremos un formulario en línea. Deberás proporcionar matrícula, categoría y correo electrónico institucional.</div></div>
-            <div class="faq-item"><div class="faq-question">¿Los cursos tienen costo? <span>+</span></div><div class="faq-answer">Totalmente gratuitos, impartidos por el IMSS como parte de la formación continua.</div></div>
-            <div class="faq-item"><div class="faq-question">¿Puedo tomar un curso si mi categoría no aparece? <span>+</span></div><div class="faq-answer">No, a menos que el curso esté marcado como "TODOS" en la columna de categorías permitidas.</div></div>
-            <div class="faq-item"><div class="faq-question">¿Hay constancia de participación? <span>+</span></div><div class="faq-answer">Sí, al cumplir con las horas y días establecidos se otorga constancia con validez curricular institucional.</div></div>
-            <div class="faq-item"><div class="faq-question">Contrataciones tipo 02 y 08 <span>+</span></div><div class="faq-answer">El personal con contratación tipo 08 no puede tomar cursos por el momento. El tipo 02 tiene acceso a algunos cursos, no a todos. Los de base sí tienen derecho a la mayoría. Revisa la categoría permitida en cada curso.</div></div>
+            <div class="faq-item"><div class="faq-question">¿Cómo me inscribo a un curso? <span>+</span></div><div class="faq-answer">Próximamente formulario en línea. Deberás proporcionar matrícula, categoría y correo.</div></div>
+            <div class="faq-item"><div class="faq-question">¿Los cursos tienen costo? <span>+</span></div><div class="faq-answer">Totalmente gratuitos, impartidos por el IMSS.</div></div>
+            <div class="faq-item"><div class="faq-question">¿Puedo tomar un curso si mi categoría no aparece? <span>+</span></div><div class="faq-answer">Solo si el curso está marcado como "TODOS" en la columna categorias_permitidas.</div></div>
+            <div class="faq-item"><div class="faq-question">¿Hay constancia de participación? <span>+</span></div><div class="faq-answer">Sí, al cumplir las horas se otorga constancia con validez curricular.</div></div>
+            <div class="faq-item"><div class="faq-question">Contrataciones tipo 02 y 08 <span>+</span></div><div class="faq-answer">El personal tipo 08 no puede tomar cursos por el momento. El tipo 02 tiene acceso a algunos cursos, no a todos. Los de base sí tienen derecho a la mayoría.</div></div>
         </div>
     </div>
 
-    <!-- Noticias -->
     <div id="noticias" class="section">
         <div class="card"><h2>Noticias y actualizaciones</h2>
             <div class="news-item"><div class="news-title">Bienvenida al nuevo sitio de cursos</div><div class="news-date">Mayo 2026</div><p>Portal activo para consulta de cursos. Próximamente registro en línea.</p></div>
-            <div class="news-item"><div class="news-title">Próximas capacitaciones</div><div class="news-date">Junio 2026</div><p>Revisa el catálogo actualizado con fechas por mes y duración total.</p></div>
+            <div class="news-item"><div class="news-title">Nuevos cursos disponibles</div><div class="news-date">Junio 2026</div><p>Revisa el catálogo actualizado con fechas por mes.</p></div>
         </div>
     </div>
 
-    <!-- Contacto -->
     <div id="contacto" class="section">
         <div class="card"><h2>Contacto y ubicación</h2>
             <div class="contact-info">
@@ -472,7 +471,6 @@
         </div>
     </div>
 
-    <!-- Políticas de privacidad -->
     <div id="politicas" class="section">
         <div class="card"><h2>Aviso de privacidad</h2>
             <p>En cumplimiento con la Ley Federal de Protección de Datos Personales en Posesión de los Particulares (LFPDPPP), la Unidad de Medicina Familiar No. 21 informa que los datos personales recabados serán utilizados exclusivamente para fines de capacitación, registro y emisión de constancias. No se compartirán con terceros ajenos al IMSS sin consentimiento expreso. El responsable del tratamiento es la Coordinación de Enseñanza. Usted puede ejercer sus derechos ARCO ante la unidad.</p>
@@ -486,47 +484,38 @@
 </footer>
 
 <script>
-    // === CONFIGURACIÓN: enlace CSV (actualízalo si cambió) ===
+    // === CONFIGURACIÓN: enlace CSV (cámbialo por el tuyo actual) ===
     const SPREADSHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTsVlWtpqfXBfKtk1J28jiVLiAOiSoGQnIeudhy6R_W5EAGdQjSd_eE-tuDacKgU0tyMFFBs4XY2beK/pub?gid=0&single=true&output=csv";
 
-    // Función para parsear días sueltos o rangos
-    function diasTextoAFechas(texto, mesIndex, anio) {
-        if (!texto || texto.trim() === "") return [];
-        const partes = texto.split(',');
-        let fechas = [];
-        for (let p of partes) {
-            p = p.trim();
-            if (p.includes('-')) {
-                let [inicio, fin] = p.split('-').map(Number);
-                for (let d = inicio; d <= fin; d++) {
-                    let fecha = new Date(anio, mesIndex, d);
-                    if (!isNaN(fecha)) fechas.push(fecha);
-                }
-            } else {
-                let dia = parseInt(p, 10);
-                if (!isNaN(dia)) {
-                    let fecha = new Date(anio, mesIndex, dia);
-                    if (!isNaN(fecha)) fechas.push(fecha);
-                }
+    // Función para obtener el texto de fechas por mes (sin interpretar como fechas reales)
+    // Simplemente concatena lo que haya en cada columna de mes.
+    function obtenerTextoFechas(fila, idxMeses, mesesNombres) {
+        let texto = "";
+        for (let i = 0; i < mesesNombres.length; i++) {
+            const idx = idxMeses[i];
+            if (idx !== -1 && fila[idx] && fila[idx].trim() !== "") {
+                texto += `${mesesNombres[i]}: ${fila[idx]} `;
             }
         }
-        return fechas;
+        return texto.trim() || "Fechas por definir";
     }
 
     async function cargarCursos() {
         try {
             const response = await fetch(SPREADSHEET_CSV_URL);
-            if (!response.ok) throw new Error();
+            if (!response.ok) throw new Error(`HTTP ${response.status}`);
             const csvText = await response.text();
+            console.log("CSV recibido, longitud:", csvText.length);
             const lineas = csvText.split(/\r?\n/).filter(l => l.trim() !== '');
-            if (lineas.length < 2) throw new Error();
+            if (lineas.length < 2) throw new Error("CSV sin datos");
 
             const headers = lineas[0].split(',').map(h => h.trim().toLowerCase());
             
             const idxNombre = headers.findIndex(h => h === 'nombre');
             const idxDesc = headers.findIndex(h => h === 'descripcion');
-            const meses = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
-            let idxMeses = meses.map(m => headers.findIndex(h => h === m));
+            // Meses en orden exacto como están en tu hoja (enero a diciembre)
+            const mesesNombres = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+            const idxMeses = mesesNombres.map(m => headers.findIndex(h => h === m));
             const idxTotalHoras = headers.findIndex(h => h === 'total de horas');
             const idxTotalDias = headers.findIndex(h => h === 'total de dias');
             const idxHora = headers.findIndex(h => h === 'hora');
@@ -544,19 +533,8 @@
                 if (!nombre) continue;
 
                 const descripcion = idxDesc !== -1 ? valores[idxDesc] : '';
-                let fechasTexto = "";
-                let todasFechas = [];
-                const anioActual = new Date().getFullYear();
-                for (let m = 0; m < meses.length; m++) {
-                    let idxMes = idxMeses[m];
-                    if (idxMes !== -1 && valores[idxMes]) {
-                        let contenido = valores[idxMes];
-                        fechasTexto += `${meses[m].charAt(0).toUpperCase() + meses[m].slice(1)}: ${contenido} `;
-                        let fechasDelMes = diasTextoAFechas(contenido, m, anioActual);
-                        todasFechas.push(...fechasDelMes);
-                    }
-                }
-
+                // Obtener texto de fechas (sin interpretar fechas reales)
+                const fechasTexto = obtenerTextoFechas(valores, idxMeses, mesesNombres);
                 const hora = idxHora !== -1 ? valores[idxHora] : '';
                 let lugar = idxLugar !== -1 ? valores[idxLugar] : '';
                 const esEnLinea = idxEnLinea !== -1 ? (valores[idxEnLinea].toLowerCase() === 'si' || valores[idxEnLinea] === '1') : false;
@@ -568,13 +546,8 @@
 
                 if (esEnLinea) lugar = 'En línea (Zoom/Meet)';
 
-                const hoy = new Date();
-                hoy.setHours(0,0,0,0);
-                let tieneFutura = false;
-                for (let fecha of todasFechas) {
-                    if (fecha >= hoy) { tieneFutura = true; break; }
-                }
-                if (!tieneFutura && estado !== 'cancelado') continue;
+                // No filtramos por fecha futura; se muestran todos los cursos (excepto cancelados)
+                if (estado === 'cancelado') continue;
 
                 let categoriasPermitidas = [];
                 if (categoriasText.trim().toUpperCase() === "TODOS") {
@@ -584,14 +557,15 @@
                 }
 
                 cursos.push({
-                    nombre, descripcion, fechas: fechasTexto || "Fechas por definir", hora, lugar,
+                    nombre, descripcion, fechas: fechasTexto, hora, lugar,
                     esEnLinea, categoriasPermitidas, estado, observaciones,
                     totalHoras, totalDias
                 });
             }
+            console.log("Cursos cargados:", cursos.length);
             return cursos;
         } catch (error) {
-            console.error(error);
+            console.error("Error cargando cursos:", error);
             return [];
         }
     }
@@ -655,7 +629,7 @@
         container.innerHTML = html;
     }
 
-    // Navegación
+    // Navegación entre secciones
     const sections = document.querySelectorAll('.section');
     const navBtns = document.querySelectorAll('.nav-btn');
     function showSection(sectionId) {
@@ -688,7 +662,7 @@
             cursosGlobal = await cargarCursos();
             const categoriaActual = selectCategoria.value;
             if (cursosGlobal.length === 0) {
-                container.innerHTML = '<div class="empty-message">⚠️ No se pudieron cargar los cursos. Verifica la hoja de cálculo.</div>';
+                container.innerHTML = '<div class="empty-message">⚠️ No se pudieron cargar los cursos. Verifica la hoja de cálculo y su publicación.</div>';
             } else {
                 renderizarCursos(cursosGlobal, categoriaActual);
             }
