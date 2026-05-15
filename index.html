@@ -3,79 +3,214 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Catálogo de Cursos - UMF 21</title>
+    <title>UMF 21 - Coordinación de Enseñanza</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, sans-serif;
             background-color: #f9fafb;
             color: #111827;
             line-height: 1.5;
-            padding: 2rem 1rem;
         }
-
-        .container {
+        /* Navegación */
+        .navbar {
+            background: white;
+            border-bottom: 1px solid #eef2f6;
+            padding: 1rem 1.5rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            background-color: rgba(255,255,255,0.95);
+        }
+        .nav-container {
             max-width: 1200px;
             margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
         }
-
-        .header {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .logo {
-            max-width: 120px;
-            margin-bottom: 1rem;
-            background: #e5e7eb;
-            border-radius: 999px;
-            width: 80px;
-            height: 80px;
-            margin-left: auto;
-            margin-right: auto;
+        .logo-area {
             display: flex;
             align-items: center;
-            justify-content: center;
-            font-weight: 600;
-            color: #4b5563;
+            gap: 1rem;
         }
-
-        h1 {
-            font-size: 1.8rem;
+        .logo-area img {
+            height: 50px;
+            width: auto;
+        }
+        .site-title {
             font-weight: 600;
-            letter-spacing: -0.01em;
+            font-size: 1.1rem;
             color: #0a2b3e;
-            margin-bottom: 0.25rem;
         }
-
-        .subhead {
+        .nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .nav-btn {
+            background: none;
+            border: none;
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+            font-weight: 500;
             color: #4b5563;
-            font-size: 1rem;
-            font-weight: 400;
+            cursor: pointer;
+            border-radius: 2rem;
+            transition: all 0.2s;
         }
-
+        .nav-btn:hover {
+            background-color: #f3f4f6;
+            color: #0a2b3e;
+        }
+        .nav-btn.active {
+            background-color: #0a2b3e;
+            color: white;
+        }
+        /* Contenido principal */
+        .main-content {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        .section {
+            display: none;
+            animation: fade 0.3s ease;
+        }
+        .section.active {
+            display: block;
+        }
+        @keyframes fade {
+            from { opacity: 0; transform: translateY(10px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+        /* Tarjetas y elementos comunes */
+        .card {
+            background: white;
+            border-radius: 1.5rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid #edf2f7;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+        }
+        h2 {
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: #0a2b3e;
+            margin-bottom: 1rem;
+        }
+        h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 1rem 0 0.5rem;
+            color: #1f2a44;
+        }
+        .mission-vision {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+        .mv-card {
+            flex: 1;
+            background: #f9fafb;
+            padding: 1rem;
+            border-radius: 1rem;
+        }
+        .values-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        .value-tag {
+            background: #eef2ff;
+            color: #0a2b3e;
+            padding: 0.3rem 0.8rem;
+            border-radius: 2rem;
+            font-size: 0.8rem;
+        }
+        .faq-item {
+            margin-bottom: 1rem;
+            border-bottom: 1px solid #eef2f6;
+            padding-bottom: 1rem;
+        }
+        .faq-question {
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .faq-answer {
+            display: none;
+            margin-top: 0.5rem;
+            color: #4b5563;
+            padding-left: 1rem;
+        }
+        .faq-answer.show {
+            display: block;
+        }
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .contact-item {
+            flex: 1;
+            background: #f9fafb;
+            padding: 1rem;
+            border-radius: 1rem;
+        }
+        .map-container {
+            margin-top: 1rem;
+            border-radius: 1rem;
+            overflow: hidden;
+            height: 300px;
+        }
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+        .news-item {
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eef2f6;
+        }
+        .news-title {
+            font-weight: 600;
+            color: #0a2b3e;
+        }
+        .news-date {
+            font-size: 0.8rem;
+            color: #6c757d;
+        }
+        footer {
+            background: white;
+            border-top: 1px solid #eef2f6;
+            padding: 1.5rem;
+            text-align: center;
+            font-size: 0.75rem;
+            color: #94a3b8;
+            margin-top: 2rem;
+        }
+        /* Estilos para la sección de cursos (igual que antes, pero dentro de .section) */
         .filter-section {
             background: white;
             border-radius: 1.5rem;
             padding: 1.5rem;
             margin-bottom: 2rem;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
             border: 1px solid #eef2f6;
         }
-
-        label {
-            font-weight: 500;
-            font-size: 0.9rem;
-            display: block;
-            margin-bottom: 0.5rem;
-            color: #1f2a44;
-        }
-
         select {
             width: 100%;
             padding: 0.8rem 1rem;
@@ -83,37 +218,19 @@
             border: 1px solid #d1d5db;
             background-color: white;
             font-size: 1rem;
-            cursor: pointer;
-            transition: 0.2s;
             font-family: inherit;
         }
-
-        select:focus {
-            outline: none;
-            border-color: #3b82f6;
-            box-shadow: 0 0 0 3px rgba(59,130,246,0.2);
-        }
-
         .courses-list {
             display: flex;
             flex-direction: column;
             gap: 1rem;
         }
-
         .course-card {
             background: white;
             border-radius: 1.5rem;
             padding: 1.5rem;
             border: 1px solid #edf2f7;
-            transition: all 0.2s ease;
-            box-shadow: 0 1px 2px rgba(0,0,0,0.02);
         }
-
-        .course-card:hover {
-            border-color: #cbd5e1;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
-        }
-
         .course-header {
             display: flex;
             flex-wrap: wrap;
@@ -122,13 +239,11 @@
             gap: 0.75rem;
             margin-bottom: 0.75rem;
         }
-
         .course-name {
             font-size: 1.25rem;
             font-weight: 600;
             color: #0f172a;
         }
-
         .badge {
             font-size: 0.7rem;
             font-weight: 500;
@@ -137,17 +252,8 @@
             background: #f1f5f9;
             color: #1e293b;
         }
-
-        .badge.canceled {
-            background: #fee2e2;
-            color: #991b1b;
-        }
-
-        .badge.modified {
-            background: #ffedd5;
-            color: #9a3412;
-        }
-
+        .badge.canceled { background: #fee2e2; color: #991b1b; }
+        .badge.modified { background: #ffedd5; color: #9a3412; }
         .course-details {
             display: flex;
             flex-wrap: wrap;
@@ -156,18 +262,7 @@
             font-size: 0.9rem;
             color: #334155;
         }
-
-        .detail-item {
-            display: flex;
-            align-items: center;
-            gap: 0.3rem;
-        }
-
-        .detail-icon {
-            font-weight: 400;
-            opacity: 0.7;
-        }
-
+        .detail-item { display: flex; align-items: center; gap: 0.3rem; }
         .description {
             margin-top: 0.75rem;
             font-size: 0.9rem;
@@ -175,90 +270,254 @@
             border-top: 1px solid #f0f2f5;
             padding-top: 0.75rem;
         }
-
         .empty-message {
             text-align: center;
             padding: 3rem 1rem;
             background: white;
             border-radius: 1.5rem;
             color: #6c757d;
-            border: 1px solid #edf2f7;
         }
-
-        footer {
-            margin-top: 3rem;
-            text-align: center;
-            font-size: 0.75rem;
-            color: #94a3b8;
-            border-top: 1px solid #e2e8f0;
-            padding-top: 2rem;
-        }
-
-        @media (max-width: 640px) {
-            body {
-                padding: 1rem;
-            }
-            .course-header {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            .course-details {
-                flex-direction: column;
-                gap: 0.4rem;
-            }
-        }
-
-        .loading {
-            text-align: center;
-            padding: 2rem;
-            color: #6c757d;
+        .loading { text-align: center; padding: 2rem; color: #6c757d; }
+        @media (max-width: 768px) {
+            .nav-container { flex-direction: column; align-items: stretch; }
+            .nav-links { justify-content: center; }
+            .mission-vision { flex-direction: column; }
         }
     </style>
 </head>
 <body>
-<div class="container">
-    <div class="header">
-        <div class="logo">
-            <span>🏥</span>
+
+<div class="navbar">
+    <div class="nav-container">
+        <div class="logo-area">
+            <img src="Logo_Enseñanza.png" alt="Logo UMF 21" onerror="this.src='https://via.placeholder.com/50?text=UMF21'">
+            <div class="site-title">UMF 21 · Coordinación de Enseñanza</div>
         </div>
-        <h1>Cursos UMF 21</h1>
-        <div class="subhead">Formación continua · Coordinación de Enseñanza</div>
+        <div class="nav-links">
+            <button class="nav-btn active" data-section="inicio">Inicio</button>
+            <button class="nav-btn" data-section="quienes">Quiénes somos</button>
+            <button class="nav-btn" data-section="cursos">Cursos</button>
+            <button class="nav-btn" data-section="faq">FAQ</button>
+            <button class="nav-btn" data-section="noticias">Noticias</button>
+            <button class="nav-btn" data-section="contacto">Contacto</button>
+            <button class="nav-btn" data-section="politicas">Políticas</button>
+        </div>
     </div>
-
-    <div class="filter-section">
-        <label for="categoria">👥 Selecciona tu categoría laboral</label>
-        <select id="categoria">
-            <option value="">-- Elige una opción --</option>
-            <option value="Médicos">Médicos</option>
-            <option value="Enfermeras">Enfermeras</option>
-            <option value="Asistentes Medicas">Asistentes Médicas</option>
-            <option value="Auxiliares Universales de Oficina">Auxiliares Universales de Oficina</option>
-            <option value="Auxiliar de Farmacia">Auxiliar de Farmacia</option>
-            <option value="Auxiliar de Laboratorio">Auxiliar de Laboratorio</option>
-            <option value="Auxiliar de limpieza e higiene">Auxiliar de limpieza e higiene</option>
-            <option value="Auxiliar de soporte técnico e informática">Auxiliar de soporte técnico e informática</option>
-            <option value="estomatólogo">Estomatólogo</option>
-            <option value="Laboratorista">Laboratorista</option>
-            <option value="Mensajero">Mensajero</option>
-            <option value="Nutricionista">Nutricionista</option>
-            <option value="Operador telefónico">Operador telefónico</option>
-            <option value="psicólogo">Psicólogo</option>
-            <option value="Trabajadora social">Trabajadora social</option>
-            <option value="Mantenimiento">Mantenimiento</option>
-            <option value="Técnico Radiólogo">Técnico Radiólogo</option>
-        </select>
-    </div>
-
-    <div id="coursesContainer" class="courses-list">
-        <div class="loading">Cargando cursos...</div>
-    </div>
-    <footer>
-        Los cursos se actualizan periódicamente. Si detectas algún error, contacta a Coordinación de Enseñanza.
-    </footer>
 </div>
 
+<div class="main-content">
+    <!-- Sección Inicio -->
+    <div id="inicio" class="section active">
+        <div class="card">
+            <h2>Bienvenido al portal de capacitación</h2>
+            <p>La Unidad de Medicina Familiar No. 21 pone a tu disposición este espacio para consultar y solicitar los cursos de formación continua. Selecciona tu categoría en la sección de <strong>Cursos</strong> y encuentra las opciones disponibles para ti.</p>
+            <p>Aquí encontrarás toda la oferta educativa, fechas, lugares y requisitos. La capacitación es gratuita y otorga constancia con validez institucional.</p>
+            <br>
+            <p><strong>Eslogan:</strong> <em>"Formación continua con calidad y calidez para el equipo de salud"</em></p>
+        </div>
+        <div class="card">
+            <h3>Accesos rápidos</h3>
+            <ul style="margin-left: 1.5rem;">
+                <li><a href="#" data-quick="cursos">Ver todos los cursos</a></li>
+                <li><a href="#" data-quick="faq">Preguntas frecuentes</a></li>
+                <li><a href="#" data-quick="contacto">Ubicación y horarios</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Sección Quiénes somos -->
+    <div id="quienes" class="section">
+        <div class="card">
+            <h2>¿Quiénes somos?</h2>
+            <p>Unidad de Medicina Familiar No. 21 OOAD 38 SUR CDMX. Somos una unidad de atención primaria comprometida con la formación continua de nuestro personal.</p>
+            <div class="mission-vision">
+                <div class="mv-card">
+                    <h3>Misión</h3>
+                    <p>Desarrollar programas educativos para la formación de recursos humanos y desarrollo profesional continuo del equipo multidisciplinario de salud, mediante la implementación de un modelo educativo propio, basado en competencias y valores, con énfasis en la innovación, el uso de tecnologías de la información y comunicación, para contribuir a la mejora de la calidad de la atención a la salud.</p>
+                </div>
+                <div class="mv-card">
+                    <h3>Visión</h3>
+                    <p>Ser un centro de referencia nacional e internacional, en la formación, actualización, desarrollo profesional continuo y capacitación de los recursos humanos para la salud, que responda a las necesidades de nuestro país.</p>
+                </div>
+            </div>
+            <h3>Valores</h3>
+            <div class="values-list">
+                <span class="value-tag">Congruencia</span>
+                <span class="value-tag">Honorabilidad</span>
+                <span class="value-tag">Honradez</span>
+                <span class="value-tag">Responsabilidad</span>
+                <span class="value-tag">Compromiso Social</span>
+                <span class="value-tag">Vocación de servicio</span>
+                <span class="value-tag">Integridad</span>
+                <span class="value-tag">Liderazgo</span>
+            </div>
+            <p style="margin-top: 1rem;">Nuestro actuar se rige por el Código de Ética y el Código de Conducta del IMSS.</p>
+        </div>
+    </div>
+
+    <!-- Sección Cursos (mismo código funcional) -->
+    <div id="cursos" class="section">
+        <div class="filter-section">
+            <label for="categoria">👥 Selecciona tu categoría laboral</label>
+            <select id="categoria">
+                <option value="">-- Elige una opción --</option>
+                <option value="Asistente Medica">Asistente Medica</option>
+                <option value="Auxiliar de Farmacia">Auxiliar de Farmacia</option>
+                <option value="Auxiliar de Laboratorio">Auxiliar de Laboratorio</option>
+                <option value="Auxiliar de limpieza e higiene">Auxiliar de limpieza e higiene</option>
+                <option value="Auxiliar de soporte técnico e informática">Auxiliar de soporte técnico e informática</option>
+                <option value="Auxiliar Universal de Oficina">Auxiliar Universal de Oficina</option>
+                <option value="Enfermería">Enfermería</option>
+                <option value="Estomatólogo">Estomatólogo</option>
+                <option value="Laboratorista">Laboratorista</option>
+                <option value="Mantenimiento">Mantenimiento</option>
+                <option value="Médico">Médico</option>
+                <option value="Mensajero">Mensajero</option>
+                <option value="Nutricionista">Nutricionista</option>
+                <option value="Operador telefónico">Operador telefónico</option>
+                <option value="psicólogo">psicólogo</option>
+                <option value="Técnico Radiólogo">Técnico Radiólogo</option>
+                <option value="Trabajadora social">Trabajadora social</option>
+            </select>
+        </div>
+        <div id="coursesContainer" class="courses-list">
+            <div class="loading">Cargando cursos...</div>
+        </div>
+    </div>
+
+    <!-- Sección FAQ -->
+    <div id="faq" class="section">
+        <div class="card">
+            <h2>Preguntas frecuentes</h2>
+            <div class="faq-item">
+                <div class="faq-question">¿Cómo me inscribo a un curso? <span>+</span></div>
+                <div class="faq-answer">Deberás llenar el formulario de inscripción (próximamente disponible en esta misma página). Se te pedirán datos como matrícula, categoría, correo personal, entre otros. Una vez enviado, la coordinación validará tu elegibilidad.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">¿Los cursos tienen costo? <span>+</span></div>
+                <div class="faq-answer">Los cursos son totalmente gratuitos, impartidos por el IMSS como parte de la formación continua del personal.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">¿Puedo tomar un curso si mi categoría no aparece? <span>+</span></div>
+                <div class="faq-answer">Cada curso está diseñado para categorías específicas. Si tu categoría no está listada, no podrás inscribirte a ese curso en particular. Sin embargo, hay cursos etiquetados como "TODOS" que son abiertos a cualquier trabajador.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">¿Hay constancia de participación? <span>+</span></div>
+                <div class="faq-answer">Sí, al cumplir con las horas y días establecidos en el curso, se otorga una constancia con validez curricular institucional.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">¿El tipo de contratación afecta la disponibilidad de cursos? <span>+</span></div>
+                <div class="faq-answer">Actualmente, las contrataciones tipo 02 y 08 no tienen acceso a cursos de capacitación. El personal de base sí tiene derecho a tomar los cursos.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sección Noticias -->
+    <div id="noticias" class="section">
+        <div class="card">
+            <h2>Noticias y actualizaciones</h2>
+            <div class="news-item">
+                <div class="news-title">Bienvenida al nuevo sitio de cursos</div>
+                <div class="news-date">15 de mayo de 2026</div>
+                <p>Hemos lanzado este portal para facilitar la consulta de cursos. Próximamente habilitaremos el registro en línea.</p>
+            </div>
+            <div class="news-item">
+                <div class="news-title">Próximas capacitaciones en RCP y Primeros Auxilios</div>
+                <div class="news-date">Junio 2026</div>
+                <p>Se están programando cursos para el segundo semestre. Mantente atento a las fechas en la sección de Cursos.</p>
+            </div>
+            <div class="news-item">
+                <div class="news-title">Nuevo sistema de constancias digitales</div>
+                <div class="news-date">En desarrollo</div>
+                <p>Pronto podrás descargar tus constancias directamente desde este sitio.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sección Contacto -->
+    <div id="contacto" class="section">
+        <div class="card">
+            <h2>Contacto y ubicación</h2>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <strong>Dirección</strong><br>
+                    Av Francisco del Paso y Troncoso 281,<br>
+                    Colonia Jardín Balbuena, C.P. 15900,<br>
+                    Alcaldía Venustiano Carranza, CDMX.
+                </div>
+                <div class="contact-item">
+                    <strong>Horario de atención</strong><br>
+                    Lunes a viernes: 08:00 a 16:00 hrs.
+                </div>
+            </div>
+            <div class="map-container">
+                <iframe src="https://maps.google.com/maps?q=19.418084738820635,-99.11310157498202&z=16&output=embed" allowfullscreen></iframe>
+            </div>
+            <p style="margin-top: 1rem; font-size: 0.85rem;">Por razones de seguridad, no mostramos correo electrónico ni teléfono en este sitio público. Las comunicaciones oficiales se realizan a través de los canales internos del IMSS.</p>
+        </div>
+    </div>
+
+    <!-- Sección Políticas de privacidad -->
+    <div id="politicas" class="section">
+        <div class="card">
+            <h2>Aviso de privacidad</h2>
+            <p>En cumplimiento con la Ley Federal de Protección de Datos Personales en Posesión de los Particulares (LFPDPPP) y su Reglamento, la Unidad de Medicina Familiar No. 21 informa a los usuarios de este sitio que:</p>
+            <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                <li>Los datos personales que se lleguen a recabar a través de futuros formularios de inscripción serán utilizados exclusivamente para fines de capacitación, registro y emisión de constancias.</li>
+                <li>No se compartirán con terceros ajenos al IMSS sin el consentimiento expreso del titular.</li>
+                <li>El responsable del tratamiento de datos es la Coordinación de Enseñanza de la UMF 21.</li>
+                <li>Usted puede ejercer sus derechos ARCO (Acceso, Rectificación, Cancelación y Oposición) enviando una solicitud al área de enseñanza de la unidad.</li>
+                <li>Este sitio no utiliza cookies de rastreo ni recopila información personal automáticamente.</li>
+            </ul>
+            <p style="margin-top: 1rem;">Fecha de última actualización: mayo de 2026.</p>
+        </div>
+    </div>
+</div>
+
+<footer>
+    Unidad de Medicina Familiar No. 21 · Coordinación de Enseñanza · Formación continua para el equipo de salud
+</footer>
+
 <script>
-    // TU ENLACE DE GOOGLE SHEETS (publicado como "Valores separados por coma")
+    // === Navegación entre secciones ===
+    const sections = document.querySelectorAll('.section');
+    const navBtns = document.querySelectorAll('.nav-btn');
+    function showSection(sectionId) {
+        sections.forEach(sec => sec.classList.remove('active'));
+        const activeSec = document.getElementById(sectionId);
+        if (activeSec) activeSec.classList.add('active');
+        navBtns.forEach(btn => {
+            if (btn.dataset.section === sectionId) btn.classList.add('active');
+            else btn.classList.remove('active');
+        });
+    }
+    navBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const sectionId = btn.dataset.section;
+            showSection(sectionId);
+            // Si es la sección de cursos, forzar recarga de lista? No necesario, ya está cargada.
+        });
+    });
+    // Enlaces rápidos de inicio
+    document.querySelectorAll('[data-quick]').forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const section = link.dataset.quick;
+            showSection(section);
+        });
+    });
+    // Acordeón FAQ
+    const faqQuestions = document.querySelectorAll('.faq-question');
+    faqQuestions.forEach(q => {
+        q.addEventListener('click', () => {
+            const answer = q.nextElementSibling;
+            answer.classList.toggle('show');
+            const span = q.querySelector('span');
+            if (span) span.textContent = answer.classList.contains('show') ? '−' : '+';
+        });
+    });
+
+    // === Código de cursos (desde Google Sheets) ===
     const SPREADSHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTsVlWtpqfXBfKtk1J28jiVLiAOiSoGQnIeudhy6R_W5EAGdQjSd_eE-tuDacKgU0tyMFFBs4XY2beK/pub?gid=0&single=true&output=csv";
 
     function parseFechaDDMMYYYY(fechaStr) {
@@ -270,7 +529,6 @@
         const año = parseInt(partes[2], 10);
         return new Date(año, mes, dia);
     }
-
     function tieneFechaFutura(textoFechas) {
         if (!textoFechas) return false;
         const hoy = new Date();
@@ -278,21 +536,17 @@
         const fechasLista = textoFechas.split(',').map(s => s.trim());
         for (let f of fechasLista) {
             const fechaObj = parseFechaDDMMYYYY(f);
-            if (fechaObj && fechaObj >= hoy) {
-                return true;
-            }
+            if (fechaObj && fechaObj >= hoy) return true;
         }
         return false;
     }
-
     async function cargarCursos() {
         try {
             const response = await fetch(SPREADSHEET_CSV_URL);
-            if (!response.ok) throw new Error('Error al cargar los datos');
+            if (!response.ok) throw new Error();
             const csvText = await response.text();
             const lineas = csvText.split(/\r?\n/).filter(l => l.trim() !== '');
-            if (lineas.length < 2) throw new Error('Hoja sin datos');
-            
+            if (lineas.length < 2) throw new Error();
             const headers = lineas[0].split(',').map(h => h.trim().toLowerCase());
             const idxNombre = headers.findIndex(h => h.includes('nombre') || h === 'curso');
             const idxDesc = headers.findIndex(h => h.includes('descrip'));
@@ -303,7 +557,6 @@
             const idxCategorias = headers.findIndex(h => h.includes('categorias') || h.includes('permite'));
             const idxEstado = headers.findIndex(h => h.includes('estado'));
             const idxObserv = headers.findIndex(h => h.includes('observ') || h === 'cambios');
-
             const cursos = [];
             for (let i = 1; i < lineas.length; i++) {
                 const valores = lineas[i].split(',').map(v => v.trim().replace(/^"|"$/g, ''));
@@ -315,35 +568,31 @@
                 const hora = idxHora !== -1 ? valores[idxHora] : '';
                 let lugar = idxLugar !== -1 ? valores[idxLugar] : '';
                 const esEnLinea = idxEnLinea !== -1 ? (valores[idxEnLinea].toLowerCase() === 'si' || valores[idxEnLinea] === '1') : false;
-                const categoriasText = idxCategorias !== -1 ? valores[idxCategorias] : '';
+                let categoriasText = idxCategorias !== -1 ? valores[idxCategorias] : '';
                 let estado = idxEstado !== -1 ? valores[idxEstado].toLowerCase() : 'activo';
                 const observaciones = idxObserv !== -1 ? valores[idxObserv] : '';
-                
-                if (!tieneFechaFutura(fechas) && estado !== 'cancelado') {
-                    continue;
-                }
+                if (!tieneFechaFutura(fechas) && estado !== 'cancelado') continue;
                 if (esEnLinea) lugar = 'En línea (Zoom/Meet)';
-                const categoriasPermitidas = categoriasText.split(',').map(c => c.trim());
-                cursos.push({
-                    nombre, descripcion, fechas, hora, lugar, esEnLinea,
-                    categoriasPermitidas, estado, observaciones
-                });
+                let categoriasPermitidas = [];
+                if (categoriasText.trim().toUpperCase() === "TODOS") {
+                    categoriasPermitidas = ["*TODOS*"];
+                } else {
+                    categoriasPermitidas = categoriasText.split(',').map(c => c.trim());
+                }
+                cursos.push({ nombre, descripcion, fechas, hora, lugar, esEnLinea, categoriasPermitidas, estado, observaciones });
             }
             return cursos;
         } catch (error) {
-            console.error(error);
             return [];
         }
     }
-
     function filtrarPorCategoria(cursos, categoria) {
         if (!categoria) return [];
         return cursos.filter(curso => {
-            if (!curso.categoriasPermitidas || curso.categoriasPermitidas.length === 0) return false;
+            if (curso.categoriasPermitidas.includes("*TODOS*")) return true;
             return curso.categoriasPermitidas.includes(categoria);
         });
     }
-
     function escapeHtml(str) {
         if (!str) return '';
         return str.replace(/[&<>]/g, function(m) {
@@ -353,7 +602,6 @@
             return m;
         });
     }
-
     function renderizarCursos(cursos, categoriaSeleccionada) {
         const container = document.getElementById('coursesContainer');
         if (!categoriaSeleccionada) {
@@ -392,21 +640,25 @@
 
     let cursosGlobal = [];
     const selectCategoria = document.getElementById('categoria');
-    async function inicializar() {
+    async function inicializarCursos() {
         const container = document.getElementById('coursesContainer');
-        container.innerHTML = '<div class="loading">📡 Cargando catálogo de cursos...</div>';
-        cursosGlobal = await cargarCursos();
-        const categoriaActual = selectCategoria.value;
-        if (cursosGlobal.length === 0) {
-            container.innerHTML = '<div class="empty-message">⚠️ No se pudieron cargar los cursos. Verifica la hoja de cálculo o contacta al administrador.</div>';
-        } else {
-            renderizarCursos(cursosGlobal, categoriaActual);
+        if (container) {
+            container.innerHTML = '<div class="loading">📡 Cargando catálogo de cursos...</div>';
+            cursosGlobal = await cargarCursos();
+            const categoriaActual = selectCategoria.value;
+            if (cursosGlobal.length === 0) {
+                container.innerHTML = '<div class="empty-message">⚠️ No se pudieron cargar los cursos. Verifica la hoja de cálculo o contacta al administrador.</div>';
+            } else {
+                renderizarCursos(cursosGlobal, categoriaActual);
+            }
         }
     }
-    selectCategoria.addEventListener('change', (e) => {
-        renderizarCursos(cursosGlobal, e.target.value);
-    });
-    inicializar();
+    if (selectCategoria) {
+        selectCategoria.addEventListener('change', (e) => {
+            renderizarCursos(cursosGlobal, e.target.value);
+        });
+        inicializarCursos();
+    }
 </script>
 </body>
 </html>
