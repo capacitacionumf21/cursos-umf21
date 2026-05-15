@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Catálogo de Cursos - UMF 21</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, sans-serif;
+            background-color: #f9fafb;
+            color: #111827;
+            line-height: 1.5;
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .logo {
+            max-width: 120px;
+            margin-bottom: 1rem;
+            background: #e5e7eb;
+            border-radius: 999px;
+            width: 80px;
+            height: 80px;
+            margin-left: auto;
+            margin-right: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            color: #4b5563;
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            color: #0a2b3e;
+            margin-bottom: 0.25rem;
+        }
+
+        .subhead {
+            color: #4b5563;
+            font-size: 1rem;
+            font-weight: 400;
+        }
+
+        .filter-section {
+            background: white;
+            border-radius: 1.5rem;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            border: 1px solid #eef2f6;
+        }
+
+        label {
+            font-weight: 500;
+            font-size: 0.9rem;
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #1f2a44;
+        }
+
+        select {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border-radius: 1rem;
+            border: 1px solid #d1d5db;
+            background-color: white;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.2s;
+            font-family: inherit;
+        }
+
+        select:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59,130,246,0.2);
+        }
+
+        .courses-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .course-card {
+            background: white;
+            border-radius: 1.5rem;
+            padding: 1.5rem;
+            border: 1px solid #edf2f7;
+            transition: all 0.2s ease;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+        }
+
+        .course-card:hover {
+            border-color: #cbd5e1;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+        }
+
+        .course-header {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .course-name {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #0f172a;
+        }
+
+        .badge {
+            font-size: 0.7rem;
+            font-weight: 500;
+            padding: 0.25rem 0.7rem;
+            border-radius: 999px;
+            background: #f1f5f9;
+            color: #1e293b;
+        }
+
+        .badge.canceled {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .badge.modified {
+            background: #ffedd5;
+            color: #9a3412;
+        }
+
+        .course-details {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 0.75rem 0;
+            font-size: 0.9rem;
+            color: #334155;
+        }
+
+        .detail-item {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .detail-icon {
+            font-weight: 400;
+            opacity: 0.7;
+        }
+
+        .description {
+            margin-top: 0.75rem;
+            font-size: 0.9rem;
+            color: #475569;
+            border-top: 1px solid #f0f2f5;
+            padding-top: 0.75rem;
+        }
+
+        .empty-message {
+            text-align: center;
+            padding: 3rem 1rem;
+            background: white;
+            border-radius: 1.5rem;
+            color: #6c757d;
+            border: 1px solid #edf2f7;
+        }
+
+        footer {
+            margin-top: 3rem;
+            text-align: center;
+            font-size: 0.75rem;
+            color: #94a3b8;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 2rem;
+        }
+
+        @media (max-width: 640px) {
+            body {
+                padding: 1rem;
+            }
+            .course-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .course-details {
+                flex-direction: column;
+                gap: 0.4rem;
+            }
+        }
+
+        .loading {
+            text-align: center;
+            padding: 2rem;
+            color: #6c757d;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <div class="logo">
+            <span>🏥</span>
+        </div>
+        <h1>Cursos UMF 21</h1>
+        <div class="subhead">Formación continua · Coordinación de Enseñanza</div>
+    </div>
+
+    <div class="filter-section">
+        <label for="categoria">👥 Selecciona tu categoría laboral</label>
+        <select id="categoria">
+            <option value="">-- Elige una opción --</option>
+            <option value="Médicos">Médicos</option>
+            <option value="Enfermeras">Enfermeras</option>
+            <option value="Asistentes Medicas">Asistentes Médicas</option>
+            <option value="Auxiliares Universales de Oficina">Auxiliares Universales de Oficina</option>
+            <option value="Auxiliar de Farmacia">Auxiliar de Farmacia</option>
+            <option value="Auxiliar de Laboratorio">Auxiliar de Laboratorio</option>
+            <option value="Auxiliar de limpieza e higiene">Auxiliar de limpieza e higiene</option>
+            <option value="Auxiliar de soporte técnico e informática">Auxiliar de soporte técnico e informática</option>
+            <option value="estomatólogo">Estomatólogo</option>
+            <option value="Laboratorista">Laboratorista</option>
+            <option value="Mensajero">Mensajero</option>
+            <option value="Nutricionista">Nutricionista</option>
+            <option value="Operador telefónico">Operador telefónico</option>
+            <option value="psicólogo">Psicólogo</option>
+            <option value="Trabajadora social">Trabajadora social</option>
+            <option value="Mantenimiento">Mantenimiento</option>
+            <option value="Técnico Radiólogo">Técnico Radiólogo</option>
+        </select>
+    </div>
+
+    <div id="coursesContainer" class="courses-list">
+        <div class="loading">Cargando cursos...</div>
+    </div>
+    <footer>
+        Los cursos se actualizan periódicamente. Si detectas algún error, contacta a Coordinación de Enseñanza.
+    </footer>
+</div>
+
+<script>
+    // TU ENLACE DE GOOGLE SHEETS (publicado como "Valores separados por coma")
+    const SPREADSHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTsVlWtpqfXBfKtk1J28jiVLiAOiSoGQnIeudhy6R_W5EAGdQjSd_eE-tuDacKgU0tyMFFBs4XY2beK/pub?gid=0&single=true&output=csv";
+
+    function parseFechaDDMMYYYY(fechaStr) {
+        if (!fechaStr) return null;
+        const partes = fechaStr.split('/');
+        if (partes.length !== 3) return null;
+        const dia = parseInt(partes[0], 10);
+        const mes = parseInt(partes[1], 10) - 1;
+        const año = parseInt(partes[2], 10);
+        return new Date(año, mes, dia);
+    }
+
+    function tieneFechaFutura(textoFechas) {
+        if (!textoFechas) return false;
+        const hoy = new Date();
+        hoy.setHours(0, 0, 0, 0);
+        const fechasLista = textoFechas.split(',').map(s => s.trim());
+        for (let f of fechasLista) {
+            const fechaObj = parseFechaDDMMYYYY(f);
+            if (fechaObj && fechaObj >= hoy) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    async function cargarCursos() {
+        try {
+            const response = await fetch(SPREADSHEET_CSV_URL);
+            if (!response.ok) throw new Error('Error al cargar los datos');
+            const csvText = await response.text();
+            const lineas = csvText.split(/\r?\n/).filter(l => l.trim() !== '');
+            if (lineas.length < 2) throw new Error('Hoja sin datos');
+            
+            const headers = lineas[0].split(',').map(h => h.trim().toLowerCase());
+            const idxNombre = headers.findIndex(h => h.includes('nombre') || h === 'curso');
+            const idxDesc = headers.findIndex(h => h.includes('descrip'));
+            const idxFechas = headers.findIndex(h => h.includes('fecha') || h === 'fechas');
+            const idxHora = headers.findIndex(h => h.includes('hora'));
+            const idxLugar = headers.findIndex(h => h.includes('lugar') || h === 'ubicacion');
+            const idxEnLinea = headers.findIndex(h => h.includes('en_linea') || h === 'en linea');
+            const idxCategorias = headers.findIndex(h => h.includes('categorias') || h.includes('permite'));
+            const idxEstado = headers.findIndex(h => h.includes('estado'));
+            const idxObserv = headers.findIndex(h => h.includes('observ') || h === 'cambios');
+
+            const cursos = [];
+            for (let i = 1; i < lineas.length; i++) {
+                const valores = lineas[i].split(',').map(v => v.trim().replace(/^"|"$/g, ''));
+                if (valores.length < 2) continue;
+                const nombre = idxNombre !== -1 ? valores[idxNombre] : 'Sin nombre';
+                if (!nombre) continue;
+                const descripcion = idxDesc !== -1 ? valores[idxDesc] : '';
+                let fechas = idxFechas !== -1 ? valores[idxFechas] : '';
+                const hora = idxHora !== -1 ? valores[idxHora] : '';
+                let lugar = idxLugar !== -1 ? valores[idxLugar] : '';
+                const esEnLinea = idxEnLinea !== -1 ? (valores[idxEnLinea].toLowerCase() === 'si' || valores[idxEnLinea] === '1') : false;
+                const categoriasText = idxCategorias !== -1 ? valores[idxCategorias] : '';
+                let estado = idxEstado !== -1 ? valores[idxEstado].toLowerCase() : 'activo';
+                const observaciones = idxObserv !== -1 ? valores[idxObserv] : '';
+                
+                if (!tieneFechaFutura(fechas) && estado !== 'cancelado') {
+                    continue;
+                }
+                if (esEnLinea) lugar = 'En línea (Zoom/Meet)';
+                const categoriasPermitidas = categoriasText.split(',').map(c => c.trim());
+                cursos.push({
+                    nombre, descripcion, fechas, hora, lugar, esEnLinea,
+                    categoriasPermitidas, estado, observaciones
+                });
+            }
+            return cursos;
+        } catch (error) {
+            console.error(error);
+            return [];
+        }
+    }
+
+    function filtrarPorCategoria(cursos, categoria) {
+        if (!categoria) return [];
+        return cursos.filter(curso => {
+            if (!curso.categoriasPermitidas || curso.categoriasPermitidas.length === 0) return false;
+            return curso.categoriasPermitidas.includes(categoria);
+        });
+    }
+
+    function escapeHtml(str) {
+        if (!str) return '';
+        return str.replace(/[&<>]/g, function(m) {
+            if (m === '&') return '&amp;';
+            if (m === '<') return '&lt;';
+            if (m === '>') return '&gt;';
+            return m;
+        });
+    }
+
+    function renderizarCursos(cursos, categoriaSeleccionada) {
+        const container = document.getElementById('coursesContainer');
+        if (!categoriaSeleccionada) {
+            container.innerHTML = '<div class="empty-message">🔍 Selecciona tu categoría para ver los cursos disponibles.</div>';
+            return;
+        }
+        const filtrados = filtrarPorCategoria(cursos, categoriaSeleccionada);
+        if (filtrados.length === 0) {
+            container.innerHTML = `<div class="empty-message">📭 No hay cursos disponibles para "${categoriaSeleccionada}" en este momento.</div>`;
+            return;
+        }
+        const html = filtrados.map(curso => {
+            let estadoBadge = '';
+            if (curso.estado === 'cancelado') estadoBadge = '<span class="badge canceled">CANCELADO</span>';
+            else if (curso.estado === 'modificado') estadoBadge = '<span class="badge modified">MODIFICADO</span>';
+            const lugarIcono = curso.esEnLinea ? '💻' : '📍';
+            const obsHtml = curso.observaciones ? `<div class="detail-item"><span class="detail-icon">📢</span> ${escapeHtml(curso.observaciones)}</div>` : '';
+            return `
+                <div class="course-card">
+                    <div class="course-header">
+                        <span class="course-name">${escapeHtml(curso.nombre)}</span>
+                        ${estadoBadge}
+                    </div>
+                    <div class="course-details">
+                        <div class="detail-item"><span class="detail-icon">📅</span> ${escapeHtml(curso.fechas || 'Fechas por definir')}</div>
+                        <div class="detail-item"><span class="detail-icon">⏰</span> ${escapeHtml(curso.hora || 'Horario pendiente')}</div>
+                        <div class="detail-item"><span class="detail-icon">${lugarIcono}</span> ${escapeHtml(curso.lugar || 'Lugar no especificado')}</div>
+                        ${obsHtml}
+                    </div>
+                    ${curso.descripcion ? `<div class="description">📖 ${escapeHtml(curso.descripcion)}</div>` : ''}
+                </div>
+            `;
+        }).join('');
+        container.innerHTML = html;
+    }
+
+    let cursosGlobal = [];
+    const selectCategoria = document.getElementById('categoria');
+    async function inicializar() {
+        const container = document.getElementById('coursesContainer');
+        container.innerHTML = '<div class="loading">📡 Cargando catálogo de cursos...</div>';
+        cursosGlobal = await cargarCursos();
+        const categoriaActual = selectCategoria.value;
+        if (cursosGlobal.length === 0) {
+            container.innerHTML = '<div class="empty-message">⚠️ No se pudieron cargar los cursos. Verifica la hoja de cálculo o contacta al administrador.</div>';
+        } else {
+            renderizarCursos(cursosGlobal, categoriaActual);
+        }
+    }
+    selectCategoria.addEventListener('change', (e) => {
+        renderizarCursos(cursosGlobal, e.target.value);
+    });
+    inicializar();
+</script>
+</body>
+</html>
